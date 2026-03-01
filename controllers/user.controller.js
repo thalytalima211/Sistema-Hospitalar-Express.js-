@@ -1,23 +1,18 @@
-import UserService from "../services/user.service.js";
+import userService from '../services/user.service.js'
 
-export class UserController {
-  constructor() {
-    this.userService = new UserService()
-  }
+export const create = async (req, res, next) => {
+  try {
+    const user = await userService.createUser(req.body)
 
-  async create(req, res, next) {
-    try {
-      console.log(this.userService)
-      const user = await this.userService.createUser(req.body);
-
-      res.status(201).json({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      });
-    } catch (error) {
-      next(error);
-    }
+    res.status(201).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    })
+  } catch (error) {
+    next(error)
   }
 }
+
+export default { create }

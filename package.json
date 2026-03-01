@@ -9,7 +9,11 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Sistema Hospitalar com controle de médicos, pacientes e agendamento de consultas, utilizando Express.js, MongoDB e Prisma.",
+  "bugs": {
+    "url": "https://github.com/thalytalima211/Sistema-Hospitalar-Express.js-/issues"
+  },
+  "homepage": "https://github.com/thalytalima211/Sistema-Hospitalar-Express.js-/readme",
   "dependencies": {
     "@prisma/client": "^6.19.2",
     "bcrypt": "^6.0.0",

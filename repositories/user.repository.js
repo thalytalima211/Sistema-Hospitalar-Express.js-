@@ -8,3 +8,5 @@ export async function findByEmail(email) {
 export async function create(data) {
   return prisma.user.create({ data });
 }
+
+export default { findByEmail, create }
