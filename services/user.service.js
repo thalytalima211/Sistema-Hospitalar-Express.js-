@@ -10,6 +10,9 @@ export const createUser = async (data) => {
       throw new AppError("Email já cadastrado", 400)
     }
 
+    if (data.role === "DOCTOR") 
+      throw new Error("Usuários médicos devem ser cadastrados pelo endpoint de médicos");
+
     const hashedPassword = await bcrypt.hash(password, 10)
 
     return userRepository.create({
