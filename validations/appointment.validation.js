@@ -8,3 +8,5 @@ export const createAppointmentSchema = z.object({
   patientId: z.string({error: (issue) => issue.input === undefined && "Paciente é obrigatório" }),
   doctorId: z.string({error: (issue) => issue.input === undefined && "Médico é obrigatório" })
 });
+
+export const rescheduleAppointmentSchema = createAppointmentSchema.omit({patientId: true, doctorId: true}).partial().strict()
