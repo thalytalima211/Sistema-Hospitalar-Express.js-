@@ -91,4 +91,12 @@ export async function activate(id) {
   });
 }
 
-export default { create, findByCrm, findById,getAll, update, deactivate, activate }
+export async function getScheduledAppointments(doctorId) {
+  return prisma.appointment.findMany({
+    where: { doctorId, status: "SCHEDULED" },
+    orderBy: { startTime: "asc" }
+  });
+}
+
+
+export default { create, findByCrm, findById,getAll, update, deactivate, activate, getScheduledAppointments }

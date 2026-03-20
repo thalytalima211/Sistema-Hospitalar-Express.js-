@@ -58,8 +58,9 @@ model Specialty {
 
 model Appointment {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  date          DateTime
-  status        AppointmentStatus
+  startTime     DateTime
+  status        AppointmentStatus @default(SCHEDULED)
+  duration      Int       
 
   patientId     String    @db.ObjectId
   patient       Patient   @relation(fields: [patientId], references: [id])

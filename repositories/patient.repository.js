@@ -13,6 +13,10 @@ export async function findByCpf(cpf) {
   return prisma.patient.findUnique({ where: { cpf } });
 }
 
+export async function findById(id) {
+  return prisma.patient.findUnique({ where: { id } });
+}
+
 export async function getAll() {
   return prisma.patient.findMany();
 }
@@ -28,4 +32,4 @@ export async function update(id, data) {
   });
 }
 
-export default { create, findByEmail, findByCpf, getAll, update }
+export default { create, findByEmail, findByCpf, findById, getAll, update }

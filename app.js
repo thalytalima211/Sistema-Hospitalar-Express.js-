@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes.js";
 import patientRoutes from "./routes/patient.routes.js";
 import specialtyRoutes from "./routes/specialty.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
+import appointmentRoutes from "./routes/appointment.routes.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use('', userRoutes);
 app.use('', patientRoutes);
 app.use('', specialtyRoutes);
 app.use('', doctorRoutes);
+app.use('', appointmentRoutes);
 app.use(errorMiddleware);
 
 export default app;
