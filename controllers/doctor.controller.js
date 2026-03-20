@@ -15,4 +15,40 @@ export const create = async (req, res, next) => {
   }
 }
 
-export default { create }
+export const getAll = async (req, res, next) => {
+  try {
+    const doctors = await doctorService.getAllDoctors()
+    res.status(200).json(doctors)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const update = async (req, res, next) => {
+  try {
+    const doctor = await doctorService.updateDoctor(req.params.id, req.body)
+    res.status(200).json(doctor)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const deactivate = async (req, res, next) => {
+  try {
+    const doctor = await doctorService.deactivateDoctor(req.params.id)
+    res.status(200).json(doctor)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const activate = async (req, res, next) => {
+  try {
+    const doctor = await doctorService.activateDoctor(req.params.id)
+    res.status(200).json(doctor)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default { create, getAll, update, deactivate, activate }

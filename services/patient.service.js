@@ -18,4 +18,17 @@ export const createPatient = async (data) => {
   })
 }
 
-export default { createPatient }
+export const getAllPatients = async () => {
+  return patientRepository.getAll()
+}
+
+export const updatePatient = async (id, data) => {
+  const patient = await patientRepository.findById(id);
+  if (!patient) {
+    throw new AppError("Paciente não encontrado", 404);
+  }
+
+  return patientRepository.update(id, data);
+}
+
+export default { createPatient, getAllPatients, updatePatient }

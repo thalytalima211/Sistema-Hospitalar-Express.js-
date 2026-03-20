@@ -21,4 +21,34 @@ export const createDoctor = async (data) => {
   return doctorRepository.create(data);
 };
 
-export default { createDoctor }
+export const getAllDoctors = async () => {
+  return doctorRepository.getAll();
+}
+
+export async function updateDoctor(id, data) {
+  const doctor = await doctorRepository.findById(id);
+  if (!doctor) {
+    throw new AppError("Médico não encontrado", 404);
+  }
+
+  return doctorRepository.update(id, data);
+}
+
+export async function deactivateDoctor(id) {
+  const doctor = await doctorRepository.findById(id);
+  if (!doctor) {
+    throw new AppError("Médico não encontrado", 404);
+  }
+  return doctorRepository.deactivate(id);
+}
+
+export async function activateDoctor(id) {
+  const doctor = await doctorRepository.findById(id);
+  if (!doctor) {
+    throw new AppError("Médico não encontrado", 404);
+  }
+  return doctorRepository.activate(id);
+}
+
+
+export default { createDoctor, getAllDoctors, updateDoctor, deactivateDoctor, activateDoctor }

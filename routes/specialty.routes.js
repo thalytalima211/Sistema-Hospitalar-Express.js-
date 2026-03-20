@@ -14,10 +14,16 @@ router.post('/register-specialty',
     specialtyController.create.bind(specialtyController)  
 )
 
-router.get('/specialities',
+router.get('/specialties',
   authMiddleware,
   roleMiddleware("ADMIN", "RECEPTIONIST"),
   specialtyController.getAll.bind(specialtyController)  
+)
+
+router.put('/specialties/:id',
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  specialtyController.update.bind(specialtyController)  
 )
 
 export default router;

@@ -11,7 +11,15 @@ export const createspecialty = async (data) => {
 }
 
 export const getAllSpecialities = async () => {
-  return specialtyRespository.all()
+  return specialtyRespository.getAll()
 }
-  
-export default { createspecialty, getAllSpecialities }
+
+export const updateSpecialty = async (id, data) => {
+  const specialty = await specialtyRespository.findById(id);
+  if (!specialty) {
+    throw new AppError("Especialidade não encontrada", 404);
+  }
+  return specialtyRespository.update(id, data);
+}
+
+export default { createspecialty, getAllSpecialities, updateSpecialty }

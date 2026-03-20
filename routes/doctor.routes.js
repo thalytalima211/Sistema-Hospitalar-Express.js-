@@ -14,4 +14,28 @@ router.post('/register-doctor',
     doctorController.create.bind(doctorController)
 )
 
+router.get('/doctors',
+    authMiddleware,
+    roleMiddleware("ADMIN", "RECEPTIONIST"),
+    doctorController.getAll.bind(doctorController)
+)
+
+router.put('/doctors/:id',
+    authMiddleware,
+    roleMiddleware("ADMIN"),
+    doctorController.update.bind(doctorController)
+)
+
+router.put('/doctors/:id/deactivate',
+    authMiddleware,
+    roleMiddleware("ADMIN"),
+    doctorController.deactivate.bind(doctorController)
+)
+
+router.put('/doctors/:id/activate',
+    authMiddleware,
+    roleMiddleware("ADMIN"),
+    doctorController.activate.bind(doctorController)
+)
+
 export default router;

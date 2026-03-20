@@ -14,8 +14,15 @@ export async function findById(id) {
   return prisma.specialty.findUnique({ where: { id } });
 }
 
-export async function all(){
+export async function getAll(){
   return prisma.specialty.findMany();
 }
 
-export default { create, findByName, findById, all }
+export async function update(id, data) {
+  return prisma.specialty.update({
+    where: { id },
+    data,
+  });
+}
+
+export default { create, findByName, findById, getAll, update }

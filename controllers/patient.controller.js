@@ -9,4 +9,23 @@ export const create = async (req, res, next) => {
   }
 }
 
-export default { create }
+export const getAll = async (req, res, next) => {
+  try {
+    const patients = await patientService.getAllPatients()
+    res.status(200).json(patients)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const update = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const patient = await patientService.updatePatient(id, req.body)
+    res.status(200).json(patient)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default { create, getAll, update }
