@@ -29,7 +29,7 @@ export const cancel = async (req, res, next) => {
 
 export const complete = async (req, res, next) => {
   try {
-    const appointment = await appointmentService.completeAppointment(req.params.id)
+    const appointment = await appointmentService.completeAppointment(req.params.id, req.body)
     res.status(200).json(appointment)
   } catch (error) {
     next(error)

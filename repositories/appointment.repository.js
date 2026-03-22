@@ -87,11 +87,18 @@ export async function cancel(id) {
   });
 }
 
-export async function complete(id) {
-  return prisma.appointment.update({
+export async function complete(id, data) {
+  const medicalRecord = await prisma.medicalRecord.create({
+    data: {
+      appointmentId: id,
+      ...data
+    }
+  })
+  const appointment = await prisma.appointment.update({
     where: { id },
     data: { status: "COMPLETED" }
   });
+  return { medicalRecord, appointment }
 }
 
 export async function reschedule(id, data){

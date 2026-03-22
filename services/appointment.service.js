@@ -46,12 +46,12 @@ export const cancelAppointment = async (id) => {
   return cancelledAppointment;
 };
 
-export const completeAppointment = async (id) => {
+export const completeAppointment = async (id, data) => {
   const appointment = await appointmentRepository.findById(id);
   if (!appointment) 
     throw new AppError("Consulta não encontrada", 404);
 
-  const completedAppointment = await appointmentRepository.complete(id);
+  const completedAppointment = await appointmentRepository.complete(id, data);
   return completedAppointment;
 };
 

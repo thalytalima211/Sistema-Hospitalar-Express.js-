@@ -3,6 +3,7 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 import { roleMiddleware } from "../middlewares/role.middleware.js";
 import { validate } from "../middlewares/validate.middleware.js";
 import { createAppointmentSchema, rescheduleAppointmentSchema } from "../validations/appointment.validation.js";
+import { createMedicalRecordSchema } from '../validations/medicalRecord.validation.js'
 import appointmentController from "../controllers/appointment.controller.js";
 
 const router = Router();
@@ -25,7 +26,8 @@ router.put("/appointments/:id/cancel",
 
 router.put("/appointments/:id/complete", 
     authMiddleware, 
-    roleMiddleware("ADMIN", "RECEPTIONIST", "DOCTOR"), 
+    roleMiddleware("ADMIN", "DOCTOR"), 
+    validate(createMedicalRecordSchema),
     appointmentController.complete);
 
 router.put("/appointments/:id/reschedule", 
