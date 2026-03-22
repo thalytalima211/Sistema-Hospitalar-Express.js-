@@ -27,4 +27,10 @@ router.put('/patients/:id',
     patientController.update.bind(patientController)
 );
 
+router.get('/patients/:id',
+    authMiddleware,
+    roleMiddleware("ADMIN", "RECEPCIONIST", "DOCTOR"),
+    patientController.getDetails.bind(patientController)
+)
+
 export default router;

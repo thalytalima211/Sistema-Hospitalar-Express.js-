@@ -27,4 +27,13 @@ export const update = async (req, res, next) => {
   }
 }
 
-export default { create, getAll, update }
+export const getDetails = async (req, res, next) => {
+  try {
+    const specialty = await specialtyService.getSpecialtyDetails(req.params.id)
+    res.status(200).json(specialty)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default { create, getAll, update, getDetails }

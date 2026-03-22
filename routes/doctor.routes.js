@@ -38,4 +38,10 @@ router.put('/doctors/:id/activate',
     doctorController.activate.bind(doctorController)
 )
 
+router.get('/doctors/:id',
+    authMiddleware,
+    roleMiddleware("ADMIN", "RECEPCIONIST", "DOCTOR"),
+    doctorController.getDetails.bind(doctorController)
+)
+
 export default router;

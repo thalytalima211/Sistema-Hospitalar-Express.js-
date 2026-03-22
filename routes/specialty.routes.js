@@ -26,4 +26,10 @@ router.put('/specialties/:id',
   specialtyController.update.bind(specialtyController)  
 )
 
+router.get('/specialties/:id',
+  authMiddleware,
+  roleMiddleware("ADMIN", "RECEPCIONIST"),
+  specialtyController.getDetails.bind(specialtyController)
+)
+
 export default router;

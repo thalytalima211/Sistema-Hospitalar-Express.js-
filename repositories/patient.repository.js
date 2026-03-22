@@ -32,4 +32,71 @@ export async function update(id, data) {
   });
 }
 
-export default { create, findByEmail, findByCpf, findById, getAll, update }
+export async function getDetails(id){
+  const patient = await prisma.patient.findUnique({ where: { id } })
+  const scheduled = await prisma.appointment.findMany({
+    where: { status: "SCHEDULED", patientId: id },
+    orderBy: { startTime: "asc" },
+    include: {
+      doctor: {
+        include: {
+          user: true
+        }
+      }
+    }
+  })
+  scheduled.forEach(app => {
+    app.doctorName = app.doctor.user.name
+    app.doctorPhone = app.doctor.phone
+    delete app.patientId
+    delete app.status
+    delete app.doctor
+  })
+
+  const canceled = await prisma.appointment.findMany({
+    where: { status: "CANCELED", patientId: id },
+    orderBy: { startTime: "desc" },
+    include: {
+      doctor: {
+        include: {
+          user: true
+        }
+      }
+    }
+  })
+
+  canceled.forEach(app => {
+    app.doctorName = app.doctor.user.name
+    app.doctorPhone = app.doctor.phone
+    delete app.patientId
+    delete app.status
+    delete app.doctor
+  })
+
+  const completed = await prisma.appointment.findMany({
+    where: { status: "COMPLETED", patientId: id },
+    orderBy: { startTime: "desc" },
+    include: {
+      medicalRecord: true,
+      doctor: {
+        include: {
+          user: true
+        }
+      }
+    }
+  })
+  completed.forEach(app => {
+    app.doctorName = app.doctor.user.name
+    app.doctorPhone = app.doctor.phone
+    delete app.patientId
+    delete app.status
+    delete app.doctor
+  })
+
+  return{
+    patient,
+    appointments: { scheduled, completed, canceled }
+  }
+}
+
+export default { create, findByEmail, findByCpf, findById, getAll, update, getDetails }

@@ -22,4 +22,12 @@ export const updateSpecialty = async (id, data) => {
   return specialtyRespository.update(id, data);
 }
 
-export default { createspecialty, getAllSpecialities, updateSpecialty }
+export const getSpecialtyDetails = async (id) => {
+  const specialty = await specialtyRespository.findById(id);
+  if (!specialty) {
+    throw new AppError("Especialidade não encontrada", 404);
+  }
+  return specialtyRespository.getDetails(id);
+}
+
+export default { createspecialty, getAllSpecialities, updateSpecialty, getSpecialtyDetails }

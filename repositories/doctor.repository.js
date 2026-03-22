@@ -98,5 +98,59 @@ export async function getScheduledAppointments(doctorId) {
   });
 }
 
+export async function getDetails(id){
+  const doctor = await prisma.doctor.findUnique({ where: { id } })
+  const scheduled = await prisma.appointment.findMany({
+    where: { status: "SCHEDULED", doctorId: id },
+    orderBy: { startTime: "asc" },
+    include: {
+      patient: true
+    }
+  })
+  scheduled.forEach(app => {
+    app.patientName = app.patient.name
+    app.patientPhone = app.patient.phone
+    delete app.patient
+    delete app.doctorId
+    delete app.status
+  })
 
-export default { create, findByCrm, findById,getAll, update, deactivate, activate, getScheduledAppointments }
+  const canceled = await prisma.appointment.findMany({
+    where: { status: "CANCELED", doctorId: id },
+    orderBy: { startTime: "desc" },
+    include: {
+      patient: true
+    }
+  })
+
+  canceled.forEach(app => {
+    app.patientName = app.patient.name
+    app.patientPhone = app.patient.phone
+    delete app.patient
+    delete app.doctorId
+    delete app.status
+  })
+
+  const completed = await prisma.appointment.findMany({
+    where: { status: "COMPLETED", doctorId: id },
+    orderBy: { startTime: "desc" },
+    include: {
+      medicalRecord: true,
+      patient: true
+    }
+  })
+  completed.forEach(app => {
+    app.patientName = app.patient.name
+    app.patientPhone = app.patient.phone
+    delete app.patient
+    delete app.doctorId
+    delete app.status
+  })
+
+  return{
+    doctor,
+    appointments: { scheduled, completed, canceled }
+  }
+}
+
+export default { create, findByCrm, findById,getAll, update, deactivate, activate, getScheduledAppointments, getDetails }

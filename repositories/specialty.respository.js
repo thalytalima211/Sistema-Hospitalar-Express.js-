@@ -25,4 +25,20 @@ export async function update(id, data) {
   });
 }
 
-export default { create, findByName, findById, getAll, update }
+export async function getDetails(id) {
+  const specialty = await prisma.specialty.findUnique({ where: { id }})
+  const doctors = await prisma.doctor.findMany({
+    where: { specialtyId: id },
+    include: { user: true }
+  })
+  doctors.forEach(app => {
+    app.doctorName = app.user.name
+    delete app.user
+    delete app.specialtyId
+    delete app.userId
+  })
+
+  return { specialty, doctors }
+}
+
+export default { create, findByName, findById, getAll, update, getDetails }

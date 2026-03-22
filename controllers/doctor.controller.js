@@ -51,4 +51,13 @@ export const activate = async (req, res, next) => {
   }
 }
 
-export default { create, getAll, update, deactivate, activate }
+export const getDetails = async (req, res, next) => {
+  try {
+    const doctor = await doctorService.getDoctorDetails(req.params.id, req.user)
+    res.status(200).json(doctor)
+  } catch (error) {
+    next(error)
+  }
+}
+
+export default { create, getAll, update, deactivate, activate, getDetails }

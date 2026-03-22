@@ -50,5 +50,16 @@ export async function activateDoctor(id) {
   return doctorRepository.activate(id);
 }
 
+export async function getDoctorDetails(id, loggedUser){
+  if(loggedUser.role === "DOCTOR" && loggedUser.doctorId !== id){
+    throw new AppError("Acesso negado", 403);
+  }
+  const doctor = await doctorRepository.findById(id);
+  if (!doctor) {
+    throw new AppError("Médico não encontrado", 404);
+  }
 
-export default { createDoctor, getAllDoctors, updateDoctor, deactivateDoctor, activateDoctor }
+  return doctorRepository.getDetails(id)
+}
+
+export default { createDoctor, getAllDoctors, updateDoctor, deactivateDoctor, activateDoctor, getDoctorDetails }
