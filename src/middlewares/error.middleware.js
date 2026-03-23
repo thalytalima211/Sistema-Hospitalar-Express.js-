@@ -17,6 +17,13 @@ export function errorMiddleware(error, req, res, next) {
     });
   }
 
+  if (error.code === "P2023") {
+    return res.status(400).json({
+      success: false,
+      message: "ID inválido"
+    });
+  }
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       success: false,

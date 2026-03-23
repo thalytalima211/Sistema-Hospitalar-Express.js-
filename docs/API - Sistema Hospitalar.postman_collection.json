@@ -1,0 +1,828 @@
+{
+  "info": {
+    "_postman_id": "f92d199b-1d10-41b4-83ff-3f1c59686f5d",
+    "name": "API - Sistema Hospitalar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49985767",
+    "_collection_link": "https://go.postman.co/collection/49985767-f92d199b-1d10-41b4-83ff-3f1c59686f5d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Registrar agendamento",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"doctorId\": \"69bd4277d1647e11f1d0e168\",\r\n    \"patientId\": \"69a63ee6b6573471368c591e\",\r\n    \"duration\": 60,\r\n    \"startTime\": \"2023-04-10T13:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/register-appointment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "register-appointment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar agendamentos",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancelar agendamento",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                ":id",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c07ed802c9d53c6d15c61a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Concluir agendamento",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"diagnosis\": \"Gripe respiratória\",\r\n    \"prescription\": \"Paracetamol 500mg, 3x ao dia por 5 dias\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id/complete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                ":id",
+                "complete"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c083a0ade8c06f11b6bbc9"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remarcar agendamento",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"duration\": 60,\r\n    \"startTime\": \"2023-04-10T10:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id/reschedule",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                ":id",
+                "reschedule"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c08c9e4668be19a6da72ba"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@hospital.com\",\r\n    \"password\": \"admin123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Doctor",
+      "item": [
+        {
+          "name": "Registrar médico",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"password\": \"password123\",\r\n    \"phone\": \"1234567890\",\r\n    \"crm\": \"1234568790\",\r\n    \"specialtyId\": \"69bd3ad8dc1eb18a0e1c3f38\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/register-doctor",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "register-doctor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar médicos",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@hospital.com\",\r\n    \"password\": \"admin123\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/doctors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "doctors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar médico",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/doctors/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "doctors",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c090681d5a7b34aeaf57b0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Desativar médico",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/doctors/:id/deactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "doctors",
+                ":id",
+                "deactivate"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c090681d5a7b34aeaf57b0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ativar médico",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/doctors/:id/activate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "doctors",
+                ":id",
+                "activate"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c090681d5a7b34aeaf57b0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes de médico",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/doctors/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "doctors",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69bd4277d1647e11f1d0e168"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "Registrar paciente",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"cpf\": \"80310434009\",\r\n    \"phone\": \"1234567890\",\r\n    \"address\": \"123 Main St\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/register-patient",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "register-patient"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pacientes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar paciente",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/patients/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "patients",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c09648be8fd67f89ec02d6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes de paciente",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "patients",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69a63ee6b6573471368c591e"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Specialty",
+      "item": [
+        {
+          "name": "Registrar especialidade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Cardiologista\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/register-specialty",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "register-specialty"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar especialidades",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/specialties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "specialties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar especialidade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Cardiologia\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/specialties/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "specialties",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69c09947a71cf8195351f25b"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes de especialidade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/specialties/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "specialties",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69bd3ad8dc1eb18a0e1c3f38"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Cadastro",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTQ3ZjMzOTg1YjU1MWJjNjc0ZmY2NCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDIyMjI0MiwiZXhwIjoxNzc0MzA4NjQyfQ.76_DsLy2KsgJ2c8D05L8jWFT63KhprgbenTEd7w6zJA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"johnRECEPTIONIST@example.com\",\r\n    \"password\": \"password123\",\r\n    \"role\": \"RECEPTIONIST\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

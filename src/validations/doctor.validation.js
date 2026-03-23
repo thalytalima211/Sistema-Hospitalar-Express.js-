@@ -13,3 +13,10 @@ export const createDoctorSchema = z.object({
     .min(10, "CRM deve conter pelo menos 10 caracteres"),
     specialtyId: z.string({error: (issue) => issue.input === undefined && "Especialidade é obrigatória" })
 });
+
+export const updateDoctorSchema = createDoctorSchema
+    .omit({
+        email: true,
+        password: true,
+        crm: true
+    }).partial().strict()

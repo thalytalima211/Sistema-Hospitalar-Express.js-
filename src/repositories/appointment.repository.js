@@ -38,6 +38,7 @@ export async function getAll(){
     delete app.patient;
     delete app.doctorId;
     delete app.doctor.active;
+    delete app.status
   });
   
   const completed = await prisma.appointment.findMany({
@@ -71,6 +72,7 @@ export async function getAll(){
     delete app.patient;
     delete app.doctorId;
     delete app.doctor.active;
+    delete app.status
   });
 
   return { scheduled, completed };
